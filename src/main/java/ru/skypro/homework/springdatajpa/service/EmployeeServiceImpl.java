@@ -2,22 +2,85 @@ package ru.skypro.homework.springdatajpa.service;
 
 
 import org.springframework.stereotype.Service;
-import ru.skypro.homework.springdatajpa.pojoEmployee.Employee;
-import ru.skypro.homework.springdatajpa.repository.EmployeeRepository;
-
-import java.util.List;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl  {
+    //private final EmployeeRepository employeeRepository;
 
-    private final EmployeeRepository employeeRepository;
+    //public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    //    this.employeeRepository = employeeRepository;
+    //}
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+
+
+
+    /*
+    @Override
+    public Collection<Employee> findAllEmployees() {
+
+        return employeeRepository.findAll();
+    }
+        @Override
+    public void addEmployee(Employee employee) {
+        employeeRepository.save(employee);
+    }
+    @Override
+    public Employee findEmployeeById(Integer id) {
+        Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        return employeeOptional.orElseThrow(() -> new IncorrectEmployeeIdException("id: " + id));
+    }
+    @Override
+    public void deleteEmployeeById(Integer id) {
+        employeeRepository.deleteById(id);
     }
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.getAllEmployees();
+    @Override
+    public List<Employee> findByName(String name) {
+        return employeeRepository.findByName(name);
+    }
+
+    @Override
+    public List<Employee> findBySalaryGreaterThan(int salary) {
+        return employeeRepository.findBySalaryGreaterThan(salary);
+    }
+
+
+
+    @Override
+    public List<Employee> findWithGreatestSalary() {
+        return employeeRepository.findWithGreatestSalary();
+    }
+
+    @Override
+    public List<EmployeeDTO> showAllEmployeesDTO() {
+        List<Employee> employeeList = new ArrayList<>(employeeRepository.showAllEmployees());
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+        for(Employee employee: employeeList) {
+            EmployeeDTO employeeDTO = EmployeeDTO.fromEmployee(employee);
+            employeeDTOList.add(employeeDTO);
+        }
+        return employeeDTOList;
+    }
+    public List<EmployeeDTO> findAllEmployeesDTO() {
+        //List<Employee> employeeList = new ArrayList<>();
+        Iterable<Employee> employeeIterable = employeeRepository.findAll();
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+        for(Employee employee: employeeIterable) {
+            EmployeeDTO employeeDTO = EmployeeDTO.fromEmployee(employee);
+            employeeDTOList.add(employeeDTO);
+        }
+        return employeeDTOList;
+    }
+
+    @Override
+    public List<EmployeeDTO> findWithGreatestSalaryDTO() {
+        List<Employee> employeeList = new ArrayList<>(employeeRepository.findWithGreatestSalary());
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+        for(Employee employee: employeeList) {
+            EmployeeDTO employeeDTO = EmployeeDTO.fromEmployee(employee);
+            employeeDTOList.add(employeeDTO);
+        }
+        return employeeDTOList;
     }
 
     @Override
@@ -47,23 +110,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.updateById(id, employee);
     }
 
-    @Override
-    public void addEmployee(Employee employee) {
-        employeeRepository.addEmployee(employee);
-    }
 
     @Override
     public void addListOfEmployees(List<Employee> employees) {
         employeeRepository.addListOf(employees);
     }
 
-    @Override
-    public Employee getEmployeeById(Integer id) {
-        return employeeRepository.getById(id);
-    }
 
-    @Override
-    public void deleteEmployeeById(Integer id) {
-        employeeRepository.deleteById(id);
-    }
+
+
+
+ */
 }

@@ -1,6 +1,7 @@
 package ru.skypro.homework.springdatajpa.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,5 +26,10 @@ public class EmployeeExceptionHandler {
     public ResponseEntity<?> handleException(Exception exception) {
         // Возвращает статус 403 (Forbidden) при возникновении Exception.
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+    @ExceptionHandler
+    public ResponseEntity<?> handleException(IncorrectEmployeeIdException idException) {
+        // Возвращает статус 404 (NOT_FOUND) при возникновении IncorrectEmployeeException.
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
