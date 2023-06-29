@@ -1,37 +1,54 @@
 package ru.skypro.homework.springdatajpa.pojoEmployee;
 
-public class Employee {
-    private Integer id;
-    private String name;
-    private int salary;
+import jakarta.persistence.*;
 
-    public Employee(Integer id, String name, int salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
+
+@Entity
+@Table(name = "employee_spring")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_id")
+    private Integer employeeId;
+    private String name;
+    private Integer salary;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "position_id")
+    private Position position;
+
+    public Employee() {
+    }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setSalary(int salary) {
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
 }

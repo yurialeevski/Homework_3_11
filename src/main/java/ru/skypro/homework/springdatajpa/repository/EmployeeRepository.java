@@ -1,19 +1,19 @@
 package ru.skypro.homework.springdatajpa.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import ru.skypro.homework.springdatajpa.pojoEmployee.Employee;
+import ru.skypro.homework.springdatajpa.service.EmployeeView;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface EmployeeRepository {
-    List<Employee> getAllEmployees();
-    int getSumSalary();
-    int getMinSalary();
-    int getMaxSalary();
-    List<Employee> getHighSalary();
-    List<Employee> getHigherThanSalary(Integer salary);
-    void updateById(Integer id, Employee employee);
-    void addEmployee(Employee employee);
-    void addListOf(List<Employee> employees);
-    Employee getById(Integer id);
-    void deleteById(Integer id);
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+    @Query(value = "select e from Employee e where e.salary = (SELECT MAX(e.salary) FROM Employee e)")
+    List<Employee> findAllWithMaxSalary();
+    @Query(value= "select e from Employee e where e.position.role = :position")
+    List<Employee> findAllWithPosition(@Param("position") String position);
+    @Query(value = "select e from Employee e where e.employeeId = :id")
+    Optional<EmployeeView> findByIdEmployeeView(@Param("id") Integer id);
 }
